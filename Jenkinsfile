@@ -21,7 +21,7 @@ pipeline{
         stage('Deploy to staging'){
             steps{
                 echo 'Deploying to staging server'
-                deploy adapters: [tomcat8(credentialsId: 'a9809649-6d45-48cb-9203-56ce0c62cb97', path: '', url: 'http://localhost:8089')], contextPath: null, war: '**/*.war'
+                deploy adapters: [tomcat8(credentialsId: 'a9809649-6d45-48cb-9203-56ce0c62cb97', path: '', url: 'http://localhost:8089')], contextPath: null, onFailure: false, war: '**/*.war'
             }
             post{
                 success{

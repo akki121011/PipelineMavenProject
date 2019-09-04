@@ -1,7 +1,7 @@
 pipeline{
     agent any
     tools{
-	jdk 'localJDK'
+	    jdk 'localJDK'
         maven 'localMaven'
     }
     stages{
@@ -13,6 +13,8 @@ pipeline{
             post{
                 success{
                     echo 'Done'
+                    echo 'Archeiving Artifact'
+                    archiveArtifacts '**/*.war'
                     }
                 }
             }

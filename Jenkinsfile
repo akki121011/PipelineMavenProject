@@ -8,7 +8,14 @@ pipeline{
         stage('Build'){
             steps{
                 echo 'Build Started'
-		sh label: '', script: 'mvn clean package'
+		sh 'mvn clean package'
+                sh 'pwd'
+                sh 'whoami'
+                sh "docker build -t webapp:${env.BUILD_ID} ."
+                sh 'docker login -u akashgupta123 -p Password@123'
+                sh "docker tag webapp:${env.BUILD_ID} akashgupta123/webapp:${env.BUILD_ID}"
+                sh "docker push akashgupta123/webapp:${env.BUILD_ID}"
+		   
                 }
             post{
                 success{
